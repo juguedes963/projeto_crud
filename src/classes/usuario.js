@@ -1,12 +1,11 @@
-var usuario=class Usuario{
-    constructor(nome,email,senha,CPF,nick){
-        this.CPF=CPF
-        this.nome=nome
-        this.email=email
-        this.senha=senha
+var usuario = class Usuario {
+    constructor(nome, email, senha, Cpf, nick) {
+        this.Cpf = Cpf
+        this.nome = nome
+        this.email = email
+        this.senha = senha
+        this.nick = nick
     }
-    createNickname(nick){
-        
-        return this.createNickname(nick)
-    }
+
 }
+module.exports = usuario

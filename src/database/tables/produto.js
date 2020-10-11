@@ -1,6 +1,6 @@
-const { DataTypes, sequelize,QueryTypes } = require('../connection')
-const modelUser = sequelize.define("user", {
-    Cpf: {
+const { DataTypes, sequelize,QueryTypes,queryInterface } = require('../connection')
+const tableProduto = queryInterface.createTable("produtos", {
+    valor: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -8,15 +8,7 @@ const modelUser = sequelize.define("user", {
         type: DataTypes.STRING,
         allowNull: false
     },
-    senha: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    nick: {
+    codigo: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -27,4 +19,4 @@ const modelUser = sequelize.define("user", {
         autoIncrement:true
     }
 })
-module.exports = {modelUser,QueryTypes}
+module.exports = {tableProduto,QueryTypes}
