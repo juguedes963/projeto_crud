@@ -1,4 +1,4 @@
-const { DataTypes, sequelize,QueryTypes } = require('../connection')
+const { DataTypes, sequelize, QueryTypes } = require('../connection')
 const modelUser = sequelize.define("user", {
     Cpf: {
         type: DataTypes.STRING,
@@ -24,7 +24,13 @@ const modelUser = sequelize.define("user", {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement:true
-    }
+        autoIncrement: true
+    },
+
+
+}, {
+    timestamps: false,
+    tableName: 'user',
+    freezeTableName: true
 })
-module.exports = {modelUser,QueryTypes}
+module.exports = { modelUser }

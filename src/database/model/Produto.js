@@ -17,6 +17,10 @@ const modelProduto = sequelize.define("produtos", {
         allowNull: false,
         primaryKey: true,
         autoIncrement:true
-    }
+    },
+    timestamps: false,
+    tableName: 'produtos',
+    freezeTableName: true
+   
 })
-module.exports = {modelProduto,QueryTypes}
+module.exports = {modelProduto}
