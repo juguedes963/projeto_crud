@@ -3,6 +3,7 @@ const sequelize = new Sequelize('projeto_crud', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
   });
+  
 const queryInterface = sequelize.getQueryInterface()
 try {
     sequelize.authenticate().then(Connection => Connection);
