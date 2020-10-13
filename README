@@ -1,4 +1,28 @@
-esse projeto e um projeto de como fazer um crud REST full
-com conexao com um bd local
-iremos utilizar um banco relacionial com ORN
-aonde sera utilizado o EXPRESS SQLite
+Api Restful NodeJS com integração com ReactJs.
+
+
+Nesse artigo iremos fazer um crud com duas entidades
+uma com as entidades produto e outra usuario aonde vai haver relação entre o produto e o usuário ,
+o sistema terá CRUD para o usuário e para o produto ,
+onde será utilizado nodeJS no backend e
+reactJS para o front-web.Para o backend irá ser utilizado as seguintes libs :
+express, mysql, cors,sequelize,bycripty jsonWebToken
+e no frontend-web irá ser utilizado :
+bootstrap,axios,useEffect,useState,router-dom,conceitos De Componente e propriedade.
+Configurando o ambiente de desenvolvimento:
+
+Ferramentas que serão necessárias:
+
+NodeJs( que pode ser baixado e instalado por esse link:https://nodejs.org/en/)
+
+MySQL(que pode ser baixado e instalado por este link:https://www.apachefriends.org/download.html)
+Yarn:após realizar a instalação do node abre o terminal(CMD) e execute o seguinte comando:
+					npm i yarn -g 
+
+isso e para fazer o yarn se tornar uma variável ambiente global do SO.
+Vscode ou algum bloco de texto 
+
+
+
+
+
