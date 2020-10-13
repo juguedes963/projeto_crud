@@ -13,9 +13,12 @@ Configurando o ambiente de desenvolvimento:
 
 Ferramentas que serão necessárias:
 
-NodeJs( que pode ser baixado e instalado por esse link:https://nodejs.org/en/)
+NodeJs( que pode ser baixado e instalado por esse link:
+https://nodejs.org/en/)
 
-MySQL(que pode ser baixado e instalado por este link:https://www.apachefriends.org/download.html)
+MySQL(que pode ser baixado e instalado por este link:
+https://www.apachefriends.org/download.html)
+
 Yarn:após realizar a instalação do node abre o terminal(CMD) e execute o seguinte comando:
 					npm i yarn -g 
 
