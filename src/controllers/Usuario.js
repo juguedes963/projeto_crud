@@ -1,26 +1,47 @@
 const modelUser = require('../database/model/Usuario')
 const classUser = require('../classes/usuario')
-const { QueryTypes } = require('sequelize');
+const { Op } = require('sequelize')
+const tableUser = require('../database/tables/tables')
 module.exports = {
 
     async createUser(req, resp) {
-        const { nome, senha, email, Cpf, nick } = req.body
-       
-        const user = new classUser(nome, senha, email, Cpf,nick)
+        const { Cpf, nome, senha, email, nick } = req.body
+        console.log(nome, senha, email, Cpf, nick)
+        const user = new classUser(senha, nome, email, Cpf, nick)
 
-        const userDados = await modelUser.modelUser.create(user)
-        console.log(userDados.Cpf)
-        if (userDados instanceof modelUser.modelUser) await userDados.save()
-        return resp.send({ nome }).status(200)
+        const historicoUser = await modelUser.modelUser.findAll({
+            where: {
+                Cpf: {
+                    [Op.like]: "%" + Cpf + "%"
+                }
+            }
+        }).then(e => e)
+       
+        if (historicoUser == undefined) {
+            const userDados = await modelUser.create(user)
+            console.log(userDados)
+            if (userDados instanceof modelUser) await userDados.save()
+            return resp.send({ nome }).status(200)
+        } else {
+            return resp.send("usuario ja possui cadastro").status(301)
+        }
+
+
     },
     async getUser(request, response) {
-        const id = request.params.id
+        const cpf = request.params.id
+
+        const user = await modelUser.modelUser.findAll({
+            where: {
+                Cpf: {
+                    [Op.like]: "%" + cpf + "%"
+                }
+            }
+        }).then(e => e)
+        console.log(user)
 
 
-
-
-        console.log(UserGetUser)
-        response.send(id)
+        response.send({ user })
     },
     async updateUser(request, response) {
         const id = request.params.id
@@ -29,7 +50,11 @@ module.exports = {
         const id = request.params.id
     },
     async getAllUser(request, response) {
-        const UserGetUser = await modelUser.modelUser.findAll()
-    }
+        const users = [await modelUser.modelUser.findAll().then(e => e)]
+        const count = await modelUser.modelUser.count().then(e => e)
+        console.log(count)
+        response.send({ users, count })
+    },
+
 
 }

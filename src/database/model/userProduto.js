@@ -1,4 +1,4 @@
-const { DataTypes, sequelize,QueryTypes } = require('../connection')
+const { DataTypes, sequelize, QueryTypes } = require('../connection')
 const modelUserProduto = sequelize.define("userProdutos", {
     id: {
         type: DataTypes.INTEGER,
@@ -7,20 +7,23 @@ const modelUserProduto = sequelize.define("userProdutos", {
     },
     id_user: {
         type: DataTypes.INTEGER,
-        allowNull: false,        
-        references:{
-            model:'user',
-            key:'Cpf'
+        allowNull: false,
+        references: {
+            model: 'user',
+            key: 'id'
         }
     },
     id_produto: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        references:{
-            model:'produto',
-            key:'nome'
+        references: {
+            model: 'produto',
+            key: 'id'
         }
     },
+    timestamps: false,
+    tableName: 'userProdutos',
+    freezeTableName: true
 })
-module.exports = {modelUserProduto,QueryTypes}
+module.exports = { modelUserProduto }
