@@ -1,4 +1,4 @@
-const modelUser = require('../database/model/Usuario')
+const {model}  = require('../database/model/models')
 const classUser = require('../classes/usuario')
 const { Op } = require('sequelize')
 
@@ -7,7 +7,7 @@ module.exports = {
     async createUser(req, resp) {
         const { Cpf, nome, senha, email, nick } = req.body
         const user = new classUser(senha, nome, email, Cpf, nick)
-        const count = await modelUser.modelUser.count({
+        const count = await model.User.count({
             where: {
                 Cpf: {
                     [Op.like]: "%" + Cpf + "%"
@@ -15,8 +15,8 @@ module.exports = {
             }
         }).then(e => e)
         if (count === 0) {
-            const userDados = await modelUser.modelUser.create(user).then(e => e)
-            if (userDados instanceof modelUser.modelUser) await userDados.save()
+            const userDados = await model.User.create(user).then(e => e)
+            if (userDados instanceof model.User) await userDados.save()
             return resp.send({ nome }).status(200)
         } else {
             return resp.send("usuario ja possui cadastro").status(301)
@@ -27,7 +27,7 @@ module.exports = {
     async getUser(request, response) {
         const cpf = request.params.id
 
-        const user = await modelUser.modelUser.findAll({
+        const user = await model.User.findAll({
             where: {
                 Cpf: {
                     [Op.like]: "%" + cpf + "%"
@@ -41,7 +41,7 @@ module.exports = {
     },
     async updateUser(request, response) {
         const cpf = request.params.id
-        const user=await modelUser.modelUser.update({
+        const user=await model.User.update({
             where: {
                 Cpf: {
                     [Op.like]: "%" + cpf + "%"
@@ -52,7 +52,7 @@ module.exports = {
     },
     async deleteUser(request, response) {
         const cpf = request.params.id
-        const user=await modelUser.modelUser.destroy({
+        const user=await model.User.destroy({
             where: {
                 Cpf: {
                     [Op.like]: "%" + cpf + "%"
@@ -63,8 +63,8 @@ module.exports = {
         response.send("usuario deletado")
     },
     async getAllUser(request, response) {
-        const users = await modelUser.modelUser.findAll().then(e => e)
-        const count = await modelUser.modelUser.count().then(e => e)
+        const users = await model.User.findAll().then(e => e)
+        const count = await model.User.count().then(e => e)
         console.log(count)
         response.send({ users, count })
     },
