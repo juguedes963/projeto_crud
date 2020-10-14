@@ -65,7 +65,6 @@ tables.userProdutos=queryInterface.createTable("userProdutos", {
     id_produto: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true,
         references: {
             model: 'produtos',
             key: 'id'

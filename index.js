@@ -10,6 +10,8 @@ const routesProdutos=require('./src/routes/routesProdutos')
 //importando  a rota de usuario
 const routesUser=require('./src/routes/routesUser')
 
+const tabelas=require('./src/database/tables/tables')
+
 //fazendo inicializao do app backend
 const app = express()
 
