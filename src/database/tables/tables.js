@@ -1,4 +1,4 @@
-const { DataTypes, sequelize,QueryTypes,queryInterface } = require('../connection')
+const { DataTypes, queryInterface } = require('../connection')
 const tables ={}
  tables.Produtos=queryInterface.createTable("produtos", {
     valor: {

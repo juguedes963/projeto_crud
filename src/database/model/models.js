@@ -1,4 +1,4 @@
-const { DataTypes, sequelize, QueryTypes } = require('../connection')
+const { DataTypes, sequelize } = require('../connection')
 const model = {}
 model.Produto = sequelize.define("produtos", {
     valor: {
