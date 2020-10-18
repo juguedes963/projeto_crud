@@ -11,8 +11,8 @@ module.exports = {
     },
     async checkPassword(password, hash) {
        
-        const state =await  bcrypt.compare(password, hash)
+        const bolean =await  bcrypt.compare(password, hash)
       
-        return state
+        return bolean
     }
 }

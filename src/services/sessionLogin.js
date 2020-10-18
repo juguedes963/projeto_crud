@@ -5,7 +5,7 @@ const { Op } = require('sequelize')
 module.exports = {
     async SessionLogin(request, response, next) {
         const { email, senha } = request.body
-console.log(request.session)
+
         const user = await model.model.User.findOne({
             where: {
                 email: {
