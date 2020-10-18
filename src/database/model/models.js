@@ -16,7 +16,13 @@ model.Produto = sequelize.define("produtos", {
     quantidade: {
         type: DataTypes.INTEGER,
         allowNull: false
-    }
+    },
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
+    },
 }, {
     timestamps: false,
     tableName: 'produtos',
@@ -63,6 +69,7 @@ model.userProduto = sequelize.define("userProdutos", {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
+        autoIncrement: true
     },
     id_user: {
         type: DataTypes.INTEGER,
@@ -74,8 +81,7 @@ model.userProduto = sequelize.define("userProdutos", {
     },
     id_produto: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
+        allowNull: false,       
         references: {
             model: 'produto',
             key: 'id'

@@ -5,12 +5,12 @@ module.exports = {
     async createProducts(request, response) {
         const { nome, valor, codProduto, quantidade } = request.body
         const produtos = new classProdutos(nome, valor, codProduto, quantidade)
-        const produtosDados = await model.Produto.create(produtos).then(e => console.log(e)).catch(e => e)
+        const produtosDados = await model.Produto.create(produtos).then(e => e).catch(e => e)
         if (produtosDados instanceof model.Produto) await produtosDados.save()
         return response.send({ nome, quantidade }).status(200)
     },
     async getProducts(request, response) {
-        const { codProduto } = request.params.id
+        const  codProduto  = request.params.id
 
         const Produto = await model.Produto.findAll({
             where: {

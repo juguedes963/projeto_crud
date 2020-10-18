@@ -1,9 +1,11 @@
 const express = require('express')
 const controllerUser = require('../controllers/Usuario')
+const SessionLogin= require('../services/sessionLogin')
 const routes = express.Router()
 routes.get('/usuario=:id', controllerUser.getUser)
 routes.post('/usuario', controllerUser.createUser)
 routes.put('/usuario=:id', controllerUser.updateUser)
 routes.delete('/usuario=:id', controllerUser.deleteUser)
 routes.get('/usuario', controllerUser.getAllUser)
+routes.post('/login',SessionLogin.SessionLogin)
 module.exports = routes

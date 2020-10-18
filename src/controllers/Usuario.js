@@ -1,12 +1,14 @@
 const { model } = require('../database/model/models')
 const classUser = require('../classes/usuario')
 const { Op } = require('sequelize')
-
+const cript=require('../services/cript')
 module.exports = {
 
     async createUser(req, resp) {
         const { Cpf, nome, senha, email, nick } = req.body
-        const user = new classUser(senha, nome, email, Cpf, nick)
+       const hash=await cript.convertCript(senha).then(e=>e).catch(e=>e)
+       
+       
         const count = await model.User.count({
             where: {
                 Cpf: {
@@ -15,6 +17,8 @@ module.exports = {
             }
         }).then(e => e)
         if (count === 0) {
+            const user = new classUser( nome,email,hash , Cpf, nick)
+           
             const userDados = await model.User.create(user).then(e => e)
             console.log(userDados)
             if (userDados instanceof model.User) await userDados.save()
