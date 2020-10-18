@@ -9,21 +9,20 @@ model.Produto = sequelize.define("produtos", {
         type: DataTypes.STRING,
         allowNull: false
     },
-    codigo: {
+    codProduto: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    id: {
+    quantidade: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
-    },
+        allowNull: false
+    }
+}, {
     timestamps: false,
     tableName: 'produtos',
     freezeTableName: true
-
-})
+}
+)
 model.User = sequelize.define("user", {
     Cpf: {
         type: DataTypes.STRING,
@@ -56,6 +55,7 @@ model.User = sequelize.define("user", {
 }, {
     timestamps: false,
     tableName: 'user',
+    adicionefreezeTableName: true,
     freezeTableName: true
 })
 model.userProduto = sequelize.define("userProdutos", {
@@ -81,8 +81,12 @@ model.userProduto = sequelize.define("userProdutos", {
             key: 'id'
         }
     },
-    timestamps: false,
-    tableName: 'userProdutos',
-    freezeTableName: true
-})
+},
+
+    {
+        timestamps: false,
+        tableName: 'userProdutos',
+        freezeTableName: true,
+        adicionefreezeTableName: true,
+    })
 module.exports = { model }

@@ -1,4 +1,4 @@
-const {model}  = require('../database/model/models')
+const { model } = require('../database/model/models')
 const classUser = require('../classes/usuario')
 const { Op } = require('sequelize')
 
@@ -16,6 +16,7 @@ module.exports = {
         }).then(e => e)
         if (count === 0) {
             const userDados = await model.User.create(user).then(e => e)
+            console.log(userDados)
             if (userDados instanceof model.User) await userDados.save()
             return resp.send({ nome }).status(200)
         } else {
@@ -41,25 +42,32 @@ module.exports = {
     },
     async updateUser(request, response) {
         const cpf = request.params.id
-        const user=await model.User.update({
+        const { nome, email, senha, nick } = request.body
+        const user = await model.User.update({
+            nome,
+            nick,
+            email,
+            senha,
             where: {
                 Cpf: {
                     [Op.like]: "%" + cpf + "%"
                 }
             }
-        }).then(e=>e)
-        console.log(user)
+        }).then(updateRows => {
+            return response.json(updateRows)
+        })
+       
     },
     async deleteUser(request, response) {
         const cpf = request.params.id
-        const user=await model.User.destroy({
+        const user = await model.User.destroy({
             where: {
                 Cpf: {
                     [Op.like]: "%" + cpf + "%"
                 }
             }
-        }).then(e=>e)
-       
+        }).then(e => e)
+
         response.send("usuario deletado")
     },
     async getAllUser(request, response) {

@@ -1,6 +1,6 @@
 const { DataTypes, queryInterface } = require('../connection')
-const tables ={}
- tables.Produtos=queryInterface.createTable("produtos", {
+const tables = {}
+tables.Produtos = queryInterface.createTable("produtos", {
     valor: {
         type: DataTypes.STRING,
         allowNull: false
@@ -9,18 +9,24 @@ const tables ={}
         type: DataTypes.STRING,
         allowNull: false
     },
-    codigo: {
+    codProduto: {
         type: DataTypes.STRING,
         allowNull: false
     },
+    quantidade: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    
+   
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement:true
-    }
+        autoIncrement: true
+    },
 })
-tables.Usuario=queryInterface.createTable("user", {
+tables.Usuario = queryInterface.createTable("user", {
     Cpf: {
         type: DataTypes.STRING,
         allowNull: false
@@ -45,10 +51,10 @@ tables.Usuario=queryInterface.createTable("user", {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement:true
+        autoIncrement: true
     }
 })
-tables.userProdutos=queryInterface.createTable("userProdutos", {
+tables.userProdutos = queryInterface.createTable("userProdutos", {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -71,4 +77,4 @@ tables.userProdutos=queryInterface.createTable("userProdutos", {
         }
     },
 })
-module.exports = {tables}
+module.exports = { tables }
