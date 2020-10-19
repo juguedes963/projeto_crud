@@ -2,7 +2,7 @@ const { Sequelize, DataTypes, Model, QueryTypes } = require('sequelize');
 
   
 
-const sequelize = new Sequelize('database_tutorial', 'julio', '', {
+const sequelize = new Sequelize('projeto_crud', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
   });

@@ -56,12 +56,9 @@ model.User = sequelize.define("user", {
         primaryKey: true,
         autoIncrement: true
     },
-
-
-}, {
+},{
     timestamps: false,
     tableName: 'user',
-    adicionefreezeTableName: true,
     freezeTableName: true
 })
 model.userProduto = sequelize.define("userProdutos", {
@@ -81,18 +78,42 @@ model.userProduto = sequelize.define("userProdutos", {
     },
     id_produto: {
         type: DataTypes.INTEGER,
-        allowNull: false,       
+        allowNull: false,
+        references: {
+            model: 'produtos',
+            key: 'id'
+        }
+    },
+}, {
+    timestamps: false,
+    tableName: 'userProdutos',
+    freezeTableName: true,
+
+})
+model.produtoImgs = sequelize.define("produtoImgs", {
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true
+    },
+    link: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    id_produto: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
             model: 'produto',
             key: 'id'
         }
-    },
+    }
 },
-
     {
         timestamps: false,
-        tableName: 'userProdutos',
+        tableName: 'produtosImgs',
         freezeTableName: true,
-        adicionefreezeTableName: true,
-    })
+
+    }
+)
 module.exports = { model }

@@ -17,8 +17,8 @@ tables.Produtos = queryInterface.createTable("produtos", {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    
-   
+
+
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -76,5 +76,24 @@ tables.userProdutos = queryInterface.createTable("userProdutos", {
             key: 'id'
         }
     },
+})
+tables.produtosImgs = queryInterface.createTable("produtosImgs", {
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true
+    },
+    link:{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    id_produto: {
+        type: DataTypes.INTEGER,
+        allowNull:false,
+        references:{
+            model:'produtos',
+            key: 'id'
+        }
+    }
 })
 module.exports = { tables }

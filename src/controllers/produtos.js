@@ -1,11 +1,14 @@
 const { model } = require('../database/model/models')
 const classProdutos = require('../classes/produtos')
+const upload=require('../services/fileImg')
 const { Op } = require('sequelize')
 module.exports = {
     async createProducts(request, response) {
         const { nome, valor, codProduto, quantidade } = request.body
         const produtos = new classProdutos(nome, valor, codProduto, quantidade)
         const produtosDados = await model.Produto.create(produtos).then(e => e).catch(e => e)
+        console.log(await upload.createStorage())
+        
         if (produtosDados instanceof model.Produto) await produtosDados.save()
         return response.send({ nome, quantidade }).status(200)
     },

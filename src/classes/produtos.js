@@ -6,4 +6,4 @@ var produtos=class Produtos{
         this.quantidade=quantidade
     }
 }
-module.exports=produtos
+module.exports=produtos 

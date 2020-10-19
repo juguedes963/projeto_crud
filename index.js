@@ -6,7 +6,7 @@ const cors = require('cors')
 
 //importando a rota de produtos
 const routesProdutos=require('./src/routes/routesProdutos')
-
+const path = require("path");
 //importando  a rota de usuario
 const routesUser=require('./src/routes/routesUser')
 
@@ -15,6 +15,7 @@ const tabelas=require('./src/database/tables/tables')
 //fazendo inicializao do app backend
 const app = express()
 
+app.use(express.static(path.resolve(__dirname,'..','public')));
 //escolhendo a porta a ser utilizada para o servidor
 const port =process.env.PORT|| 3002
 
